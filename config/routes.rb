@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   
 
+  resources :products
+  resources :categories
   get 'dashboards/index'
 
   devise_for :users
