@@ -8,7 +8,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   authenticated :user do
-    root 'dashboards#index', as: :authenticated_root
+    root 'products#index', as: :authenticated_root
   end
 
   root 'pages#index'
