@@ -1,15 +1,25 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:show]
+  #load_and_authorize_resource
+  #skip_load_resource only: :show
+  load_and_authorize_resource
 
   # GET /products
   # GET /products.json
   def index
     @products = Product.all
+    # Code below is restricting unauthorized access to users that are not admins. 
+    # We only want admins to access this page, so they can manage the products.
+    # Regular users can only access :show action so they can add products to cart.
+    # Loading all products is done under landing_controller.rb
+    authorize! :index
   end
 
   # GET /products/1
   # GET /products/1.json
   def show
+    #authorize! :show
   end
 
   # GET /products/new

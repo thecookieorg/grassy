@@ -19,7 +19,7 @@
                 <%= f.radio_button :is_female, '0' %> <%= f.label :is_female, "Male", id: "optionsRadios1" %><br>
                 <br>
                   <%= f.label :date_of_birth %>
-                  <%= f.date_select :date_of_birth, {order: [:month, :day, :year], prompt: { day: 'Select day', month: 'Select month', year: 'Select year' }, start_year: Date.today.year - 18, end_year: Date.today.year - 80}, {required: true, class: "form-control", id: "select"} %><br>
+                  <%= f.date_select :date_of_birth, {order: [:month, :day, :year], prompt: { day: 'Select day', month: 'Select month', year: 'Select year' }, start_year: Date.today.year - 19, end_year: Date.today.year - 80}, {required: true, class: "form-control", id: "select"} %><br>
                   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
                     <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
                   <% end %>

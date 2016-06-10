@@ -4,12 +4,23 @@ class Ability
   def initialize(user)
     # Define abilities for the passed in user here. For example:
     #
-    #   user ||= User.new # guest user (not logged in)
-    #   if user.admin?
-    #     can :manage, :all
-    #   else
-    #     can :read, :all
-    #   end
+    user ||= User.new # guest user (not logged in)
+    if user.admin?
+        can :manage, :all
+    else
+        can :read, Category
+        #can :read, Product
+        cannot :index, Product #I added 'authorize! :index' in my products_controller.rb so users can't access products index page, only admins.
+        can :show, Product # This is to allow users to click on individual products show page, so they can add them to cart.
+    end
+
+
+
+
+
+
+
+    
     #
     # The first argument to `can` is the action you are giving the user
     # permission to do.

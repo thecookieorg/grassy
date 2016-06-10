@@ -1,0 +1,24 @@
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<%= image_tag "product-img-big.jpg", class: "img-responsive" %>
+		</div><!-- end col-md-12 -->
+	</div><!-- end row -->
+	<div class="row" style="margin-top: 10px;">
+		<div class="col-md-12">
+			<h1>Check out our products!</h1>
+		</div>
+	</div><!-- end row -->
+	<div class="row" style="margin-top: 10px;">
+		<% @products.each do |product| %>
+			<div class="col-md-3">
+				<div class="panel panel-default">
+				  <div class="panel-body">
+				    <%= image_tag "vc_god_bud-470.jpg", class: "img-responsive" %>
+				  </div>
+				</div>
+			</div><!-- end col-md-3 -->
+		<% end %>
+	</div><!-- end row -->
+</div><!-- end container -->

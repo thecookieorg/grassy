@@ -1,15 +1,15 @@
 <%= simple_form_for(@product) do |f| %>
   <%= f.error_notification %>
 
-  <div class="form-inputs">
-    <%= f.input :name, autofocus: true %>
-    <%= f.input :price %>
-    <%= f.input :weight %>
-    <%= f.input :sku %>
-    <%= f.input :description %>
+  <div class="form-group">
+    <%= f.input :name, autofocus: true, class: "form-control" %>
+    <%= f.input :price, class: "form-control" %>
+    <%= f.input :weight, class: "form-control" %>
+    <%= f.input :sku, class: "form-control" %>
+    <%= f.input :description, class: "form-control" %>
     <div class="field">
-      <%= f.label :category_id %>
-      <%= f.collection_select :category_id, Category.all, :id, :name %>
+      <%= f.label :category_id %><br>
+      <%= f.collection_select :category_id, Category.all, :id, :name, class: "form-control", id: "select" %>
     </div>
   </div>
 

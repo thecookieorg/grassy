@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   
 
+  get 'landing/index'
+
   resources :products
   resources :categories
   get 'dashboards/index'
@@ -8,7 +10,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   authenticated :user do
-    root 'products#index', as: :authenticated_root
+    root 'landing#index', as: :authenticated_root
   end
 
   root 'pages#index'
