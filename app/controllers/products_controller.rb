@@ -13,7 +13,7 @@ class ProductsController < ApplicationController
     # We only want admins to access this page, so they can manage the products.
     # Regular users can only access :show action so they can add products to cart.
     # Loading all products is done under landing_controller.rb
-    authorize! :index
+    #authorize! :index
   end
 
   # GET /products/1

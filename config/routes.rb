@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :products
   resources :categories
   get 'dashboards/index'
+  get 'dashboards/list_all_users'
 
   devise_for :users
 
