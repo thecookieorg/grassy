@@ -1,9 +1,8 @@
 class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:show]
-  #load_and_authorize_resource
-  #skip_load_resource only: :show
-  load_and_authorize_resource
+  #skip_load_resource only: :show => doesn't work, don't know why???
+  load_and_authorize_resource #this works, don't know why???
 
   # GET /products
   # GET /products.json
@@ -19,7 +18,6 @@ class ProductsController < ApplicationController
   # GET /products/1
   # GET /products/1.json
   def show
-    #authorize! :show
   end
 
   # GET /products/new
