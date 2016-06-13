@@ -55,7 +55,12 @@
 								        		<br>
 								        		<h4>Province &amp; Postal: </h4> <p><%= user.province %>, <%= user.postal_code %></p>
 								        		<br>
-								        		<h4>Sex:</h4> <p><%= user.is_female %></p>
+								        		<h4>Gender:</h4> <p>
+								        		<% if user.is_female == true %>
+								        			<p>Female</p>
+								        		<% else %>
+								        			<p>Male</p>
+								        		<% end %>
 								        	</div><!-- end col-md-6 -->
 								        	<div class="col-md-6">
 								        		<h4>Date of Birth:</h4> <p><%= user.date_of_birth %></p>
