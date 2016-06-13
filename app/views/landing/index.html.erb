@@ -14,8 +14,13 @@
 		<% @products.each do |product| %>
 			<div class="col-md-3">
 				<div class="panel panel-default">
-				  <div class="panel-body">
+				  <div class="panel-body text-center">
 				    <%= image_tag "vc_god_bud-470.jpg", class: "img-responsive" %>
+				    <h4><%= product.name %></h4>
+				    <p>$<%= product.price %></p>
+				    <%= link_to product, class: "btn btn-success" do %>
+				    	<i class="fa fa-asterisk" aria-hidden="true"></i> Details
+				    <% end %>
 				  </div>
 				</div>
 			</div><!-- end col-md-3 -->

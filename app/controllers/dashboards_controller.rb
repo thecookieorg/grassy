@@ -13,4 +13,8 @@ class DashboardsController < ApplicationController
   def list_all_users
   	@users = User.all
   end
+
+  def store_settings
+    @store_policies = StorePolicy.all
+  end
 end

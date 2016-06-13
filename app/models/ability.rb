@@ -12,6 +12,7 @@ class Ability
         cannot :index, Dashboard
         cannot :index, Product #I added 'authorize! :index' in my products_controller.rb so users can't access products index page, only admins.
         can :show, Product # This is to allow users to click on individual products show page, so they can add them to cart.
+        can :show, StorePolicy
     end
 
 

@@ -1,12 +1,14 @@
 Rails.application.routes.draw do
   
 
+  resources :store_policies
   get 'landing/index'
 
   resources :products
   resources :categories
   get 'dashboards/index'
   get 'dashboards/list_all_users'
+  get 'dashboards/store_settings'
 
   devise_for :users
 
