@@ -26,6 +26,8 @@
       <br>
       <h5>Share Product</h5>
       <i class="fa fa-facebook-official" aria-hidden="true"></i> <i class="fa fa-twitter-square" aria-hidden="true"></i>
+
+      <%= button_to "Add to Cart", line_items_path(product_id: @product) %>
     </div><!-- end col-md-6 -->
   </div><!-- end row -->
 </div><!-- end container -->

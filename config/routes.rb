@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   
 
+  resources :line_items
+  resources :carts
   resources :store_policies
   get 'landing/index'
 
