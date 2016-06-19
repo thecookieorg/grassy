@@ -1,4 +1,22 @@
-<p id="notice"><%= notice %></p>
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<h2>Your Grassy Cart</h2>
+			<table class="table">
+				<% @cart.line_items.each do |item| %>
+					<tr>
+						<td><%= item.quantity %>&times;</td>
+						<td><%= item.product.name %></td>
+						<td class="item_price"><%= number_to_currency(item.total_price) %></td>
+					</tr>
+				<% end %>
 
-<%= link_to 'Edit', edit_cart_path(@cart) %> |
-<%= link_to 'Back', carts_path %>
+				<tr class="total_line">
+					<td colspan="2">Total</td>
+					<td class="total_cell"><%= number_to_currency(@cart.total_price) %></td>
+				</tr>
+			</table>
+			<%= button_to 'Empty cart', @cart, method: :delete, data: { confirm: 'Are you sure?' } %>
+		</div><!-- end col-md-12 -->
+	</div><!-- end row -->
+</div><!-- end container -->
