@@ -9,7 +9,9 @@
 </table>
 <div class="row">
 	<div class="col-md-6">
-		<%= button_to "Checkout", new_order_path, method: :get %>
+		<%= button_to new_order_path, class: "btn btn-primary btn-sm", method: :get do %>
+			<i class="fa fa-credit-card-alt" aria-hidden="true"></i> Checkout
+		<% end %>
 	</div><!-- end col-md-6 -->
 	<div class="col-md-6">
 		<%= button_to cart, method: :delete, class: "btn btn-danger btn-sm", data: { confirm: 'Are you sure?' } do %>
