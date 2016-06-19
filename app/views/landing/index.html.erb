@@ -11,19 +11,43 @@
 		</div>
 	</div><!-- end row -->
 	<div class="row" style="margin-top: 10px;">
-		<% @products.each do |product| %>
-			<div class="col-md-3">
-				<div class="panel panel-default">
-				  <div class="panel-body text-center">
-				    <%= image_tag "vc_god_bud-470.jpg", class: "img-responsive" %>
-				    <h4><%= product.name %></h4>
-				    <p>$<%= product.price %></p>
-				    <%= link_to product, class: "btn btn-success" do %>
-				    	<i class="fa fa-asterisk" aria-hidden="true"></i> Details
-				    <% end %>
-				  </div>
-				</div>
-			</div><!-- end col-md-3 -->
-		<% end %>
+		<div class="col-md-9">
+			<div class="row">
+				<% @products.each do |product| %>
+					<div class="col-md-3">
+						<div class="panel panel-default">
+						  <div class="panel-body text-center">
+						    <%= image_tag "vc_god_bud-470.jpg", class: "img-responsive" %>
+						    <h4><%= product.name %></h4>
+						    <p>$<%= product.price %></p>
+						    <div class="row">
+						    	<div class="col-md-6">
+						    		<%= link_to product, class: "btn btn-info btn-sm" do %>
+								    	<i class="fa fa-asterisk" aria-hidden="true"></i> Info
+								    <% end %>
+						    	</div>
+						    	<div class="col-md-6">
+						    		<%= button_to line_items_path(product_id: product), class: "btn btn-success btn-sm", remote: true do %>
+								    	<i class="fa fa-cart-plus" aria-hidden="true"></i> Buy
+								    <% end %>
+						    	</div>
+						    </div>
+						    
+						    
+						  </div>
+						</div>
+					</div><!-- end col-md-3 -->
+				<% end %>
+			</div><!-- end row -->
+		</div><!-- col-md-9 -->
+		<div class="col-md-3" style="border: 1px solid grey;">
+			<div id="cart">
+				<% if (@cart.line_items.empty?) %>
+					<h5>Your Cart Is Empty</h5>
+				<% else %>
+					<%= render @cart %>
+				<% end %>
+			</div>
+		</div><!-- col-md-3 -->
 	</div><!-- end row -->
 </div><!-- end container -->
