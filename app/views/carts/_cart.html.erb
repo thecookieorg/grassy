@@ -7,4 +7,6 @@
 		<td class="total_cell"><%= number_to_currency(cart.total_price) %></td>
 	</tr>
 </table>
-<%= button_to 'Empty cart', cart, method: :delete, data: { confirm: 'Are you sure?' } %>
+<%= button_to cart, method: :delete, class: "btn btn-danger btn-sm", data: { confirm: 'Are you sure?' } do %>
+	<i class="fa fa-trash" aria-hidden="true"></i> Empty Cart
+<% end %>

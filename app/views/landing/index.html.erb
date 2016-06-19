@@ -22,9 +22,9 @@
 						    <p>$<%= product.price %></p>
 						    <div class="row">
 						    	<div class="col-md-6">
-						    		<%= link_to product, class: "btn btn-info btn-sm" do %>
-								    	<i class="fa fa-asterisk" aria-hidden="true"></i> Info
-								    <% end %>
+						    		<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#<%= product.id %>">
+									  <i class="fa fa-asterisk" aria-hidden="true"></i> Info
+									</button>
 						    	</div>
 						    	<div class="col-md-6">
 						    		<%= button_to line_items_path(product_id: product), class: "btn btn-success btn-sm", remote: true do %>
@@ -37,6 +37,47 @@
 						  </div>
 						</div>
 					</div><!-- end col-md-3 -->
+
+					<!-- modal begins -->
+						<!-- Modal -->
+							<div class="modal fade" id="<%= product.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+							  <div class="modal-dialog" role="document">
+							    <div class="modal-content">
+							      <div class="modal-header">
+							        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+							        <h4 class="modal-title" id="myModalLabel"><%= product.name %> Details</h4>
+							      </div>
+							      <div class="modal-body">
+							        <div class="row">
+							        	<div class="col-md-6">
+							        		<%= image_tag "vc_god_bud-470.jpg", class: "img-responsive" %>
+							        		<br>
+							        		<h5>Share Product</h5>
+									      <i class="fa fa-facebook-official" aria-hidden="true"></i> <i class="fa fa-twitter-square" aria-hidden="true"></i>
+							        	</div>
+							        	<div class="col-md-6">
+							        	  <h3><em>$<%= product.price %></em></h3>
+									      <h4><span style="color: green;">IN STOCK</span></h4>
+									      <% if product.weight == 1 %>
+									        <h3><strong>SIZE:</strong> <%= product.weight %> gram</h3>
+									      <% else %>
+									        <h3><strong>SIZE:</strong> <%= product.weight %> grams</h3>
+									      <% end %>
+									      <h5>SKU: <%= product.sku %></h5>
+									      <br>
+									      <h3 style="border-bottom: 1px solid #eee;">Description</h3>
+									      <p><%= product.description %></p>
+							        	</div>
+							        </div><!-- end row -->
+							      </div>
+							      <div class="modal-footer">
+							        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							      </div>
+							    </div>
+							  </div>
+							</div>
+					<!-- modal ends -->
+
 				<% end %>
 			</div><!-- end row -->
 		</div><!-- col-md-9 -->
