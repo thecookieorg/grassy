@@ -1,15 +1,35 @@
 <%= simple_form_for(@order) do |f| %>
-  <%= f.error_notification %>
   
+
   <div class="form-group">
     <%# f.input :pay_type %>
     <%= f.select :pay_type, Order::PAYMENT_TYPES,
-    			 prompt: "Select a payment mathod", class: "form-control" %>
+    			 allow_blank: false, class: "form-control" %>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit do %>
-    	<i class="fa fa-check" aria-hidden="true"></i> Submit Order
+  <article>
+    <% if flash[:error].present? %>
+      <div id="error_explanation">
+        <p><%= flash[:error] %></p>
+      </div>
     <% end %>
+    <%= f.hidden_field :stripe_card_token %>
+     <%= label_tag 'amount', 'To Pay', class: 'amount' %>
+     <%= label_tag 'amount', "$#{@cart.total_price}", class: 'amount-figure' %>
+ </article>
+ 
+ <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+    data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+    data-description="Grassy Payment"
+    data-amount="<%= @cart.total_price * 100 %>"
+    data-email="<%= current_user.email %>">
+  </script>
+
+
+
+  <div class="form-actions">
+    <%# f.button :submit do %>
+    	<!--<i class="fa fa-check" aria-hidden="true"></i> Submit Order -->
+    <%# end %>
   </div>
 <% end %>
