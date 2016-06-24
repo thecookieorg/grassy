@@ -81,10 +81,10 @@
 				<% end %>
 			</div><!-- end row -->
 		</div><!-- col-md-9 -->
-		<div class="col-md-3" style="border: 1px solid grey;">
+		<div class="col-md-3" style="border: 1px solid grey; padding-bottom: 12px;">
 			<div id="cart">
 				<% if (@cart.line_items.empty?) %>
-					<h5>Your Cart Is Empty</h5>
+					<h5 class="text-center"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Your Cart Is Empty</h5>
 				<% else %>
 					<%= render @cart %>
 				<% end %>
@@ -92,3 +92,5 @@
 		</div><!-- col-md-3 -->
 	</div><!-- end row -->
 </div><!-- end container -->
+
+<%= render 'pages/footer' %>

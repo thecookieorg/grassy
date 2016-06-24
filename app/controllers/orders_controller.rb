@@ -25,6 +25,8 @@ class OrdersController < ApplicationController
 
     #@order = Order.new
     @order = current_user.orders.build
+
+    @categories = Category.all
   end
 
   # GET /orders/1/edit
