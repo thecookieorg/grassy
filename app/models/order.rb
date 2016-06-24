@@ -1,6 +1,7 @@
 class Order < ActiveRecord::Base
 	has_many :line_items, dependent: :destroy
 	belongs_to :user
+	validates_presence_of :address
 
 	attr_accessor :stripe_card_token
 

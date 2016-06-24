@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Hi!</h1>
+    <br>
+    <p>Thank you for your purchase!</p>
+    <p>You ordered the following items:<br>
+		<%= render @order.line_items %>
+	  </p>
+    <p>Your order will be delivered here:<br>
+      <%= @order.address %>
+    </p>
+  </body>
+</html>

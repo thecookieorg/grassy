@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   get 'dashboards/list_all_users'
   get 'dashboards/store_settings'
 
-  devise_for :users
+  devise_for :users, :controllers => { registrations: 'registrations' }
 
   authenticated :user do
     root 'landing#index', as: :authenticated_root

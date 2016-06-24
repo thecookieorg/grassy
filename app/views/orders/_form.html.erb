@@ -6,6 +6,10 @@
       <%= f.select :pay_type, Order::PAYMENT_TYPES,
              allow_blank: false, class: "form-control" %>
     </div>
+    <div class="form-group" style="margin-bottom: 30px; margin-top: 30px;">
+      <%# f.input :pay_type %>
+      <%= f.input :address, autofocus: true, class: "form-control", label: "Delivery Address", placeholder: "Please enter full address, with zip code and appartment number" %>
+    </div>
   </div>
   <div class="col-md-6">
     <article>
@@ -27,6 +31,22 @@
   </div>
 </div>
 
+<hr>
+
+<div class="row">
+  <div class="col-md-12">
+    <h3>Products In Your Cart:</h3>
+    <table class="table table-hover">
+      <%= render(@cart.line_items) %>
+
+      <tr class="total_line">
+        <td colspan="2">Total <small>(+GST 5%)</small></td>
+        <td class="total_cell"><%= number_to_currency(@cart.total_price) %></td>
+      </tr>
+    </table>
+  </div><!-- end -->
+</div><!-- end row -->
+
 
 
 
@@ -36,3 +56,4 @@
     <%# end %>
   </div>
 <% end %>
+
