@@ -1,4 +1,5 @@
 class Product < ActiveRecord::Base
+	mount_uploader :attachment, AttachmentUploader #tells rails to use this uploader for this model
 	belongs_to :category
 	validates_presence_of :name, :price, :weight, :sku, :description
 

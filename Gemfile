@@ -32,6 +32,8 @@ gem 'cancancan', '~> 1.10'
 gem 'font-awesome-rails'
 gem 'stripe', git: 'https://github.com/stripe/stripe-ruby'
 gem 'figaro'
+gem 'carrierwave'
+gem 'mini_magick'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
