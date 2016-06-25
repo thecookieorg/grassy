@@ -121,9 +121,9 @@ THIS IS MY ITEMS ARRAY OF OBJECTS FROM GET SWIFT DOCUMENTATION
                     "booking":{
                         "items": @@items,
                         "pickupDetail": {
-                            "name": "Marko",
-                            "phone": "604 356 8259",
-                            "address": "3456 Wellington Crescent, North Vancouver, V7R3B4, British Columbia"
+                            "name": "Grassy",
+                            "phone": "7788368819",
+                            "address": "375 Water Street, Vancouver, BC V6B 5C6"
                         },
                         "dropoffDetail": {
                             "name": current_user.name,
