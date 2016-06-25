@@ -11,7 +11,7 @@ class OrdersController < ApplicationController
     if current_user.admin?
       @orders = Order.all.order("created_at DESC").paginate(:page => params[:page], :per_page => 20)
     else
-      @orders = current_user.orders
+      @orders = current_user.orders.order("created_at DESC").paginate(:page => params[:page], :per_page => 10)
     end
     #@categories = Category.all
   end

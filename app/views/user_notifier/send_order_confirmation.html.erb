@@ -4,14 +4,22 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Hi!</h1>
-    <br>
-    <p>Thank you for your purchase!</p>
-    <p>You ordered the following items:<br>
-		<%= render @order.line_items %>
-	  </p>
-    <p>Your order will be delivered here:<br>
-      <%= @order.address %>
-    </p>
+    <h3>Hey <%= @order.user.name %>,</h3>
+    <h4>Thank you for your purchase!</h4>
+    <h4>Ordered items:</h4>
+    <p><%= render @order.line_items %></p>
+    <hr>
+    <h4>Address for delivery:</h4>
+      <p>
+        <ul>
+          <li>Street Address: <%= @order.user.street_address %></li>
+          <li>Unit Number: <%= @order.user.unit_number %></li>
+          <li>Buzzer Number: <%= @order.user.buzzer_number %></li>
+          <li>City: <%= @order.user.city %></li>
+          <li>Postal Code: <%= @order.user.postal_code %></li>
+        </ul>
+      </p>
+    <hr>
+    <h4>Feel free to email us at hello@grassy.com if you have any questions!</h4>
   </body>
 </html>

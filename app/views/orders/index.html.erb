@@ -13,7 +13,9 @@
           <th>Order Date/Time</th>
           <th>Product Name</th>
           <th>Quantity</th>
-          <th>Buyer</th>
+          <% if current_user.admin? %>
+            <th>Buyer</th>
+          <% end %>
           <th colspan="3"></th>
         </tr>
       </thead>
@@ -33,14 +35,16 @@
               <%= l.quantity %><br>
             <% end %>
             </td>
-            <td><%= order.user.name %></td>
+            <% if current_user.admin? %>
+              <td><%= order.user.name %></td>
+            <% end %>
           </tr>
         <% end %>
       </tbody>
     </table>
   </div><!-- end row -->
-
-  <div class="row">
+  <hr>
+  <div class="row" style="margin-top: 30px;">
     <div class="digg_pagination">
       <div class="page_info">
         <%= page_entries_info @orders %>

@@ -5,7 +5,6 @@
   </head>
   <body>
     <h2>Hey Raj! You have a new order waiting!</h2>
-    <br>
     <h4>Ordered items:</h4>
 		<p><%= render @order.line_items %></p>
     <hr>
@@ -19,6 +18,7 @@
           <li>Postal Code: <%= @order.user.postal_code %></li>
         </ul>
       </p>
+      <hr>
       <h4>Customers Personal Info:</h4>
       <p>
         <ul>
