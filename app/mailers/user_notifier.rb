@@ -15,7 +15,6 @@ class UserNotifier < ApplicationMailer
 		@order = order
 		mail(
 			:to => @order.user.email,
-			:bcc => 'mmanojlovic@cesgroup.ca',
 			:subject => 'Grassy Order Confirmation'
 		)  
 		

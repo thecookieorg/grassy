@@ -7,27 +7,36 @@
              allow_blank: false, class: "form-control" %>
     </div>
     <div class="form-group" style="margin-bottom: 30px; margin-top: 30px;">
-      <%# f.input :pay_type %>
-      <%= f.input :address, autofocus: true, class: "form-control", label: "Delivery Address", placeholder: "Please enter full address, with zip code and appartment number" %>
+      <article>
+        <% if flash[:error].present? %>
+          <div id="error_explanation">
+            <p><%= flash[:error] %></p>
+          </div>
+        <% end %>
+        <%= f.hidden_field :stripe_card_token %>
+         <%= label_tag 'amount', 'Your Cart Total Is:', class: 'amount' %>
+         <%= label_tag 'amount', "$#{@cart.total_price}", class: 'amount-figure' %>
+      </article>
+      <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+      data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+      data-description="Grassy Payment"
+      data-amount="<%= @cart.total_price * 100 %>"
+      data-email="<%= current_user.email %>">
+      </script>
+      
+      <%# f.input :address, autofocus: true, class: "form-control", label: "Delivery Address", placeholder: "Please enter full address, with zip code and appartment number" %>
     </div>
   </div>
   <div class="col-md-6">
-    <article>
-      <% if flash[:error].present? %>
-        <div id="error_explanation">
-          <p><%= flash[:error] %></p>
-        </div>
-      <% end %>
-      <%= f.hidden_field :stripe_card_token %>
-       <%= label_tag 'amount', 'Your Cart Total Is:', class: 'amount' %>
-       <%= label_tag 'amount', "$#{@cart.total_price}", class: 'amount-figure' %>
-   </article>
-   <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-    data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
-    data-description="Grassy Payment"
-    data-amount="<%= @cart.total_price * 100 %>"
-    data-email="<%= current_user.email %>">
-  </script>
+    <h4>Your order will be delivered to:</h4>
+      <ul>
+        <li><%= current_user.street_address %></li>
+        <li>Unit <%= current_user.unit_number %></li>
+        <% if current_user.buzzer_number.present? %>
+          <li>Buzzer #<%= current_user.buzzer_number %></li>
+        <% end %>
+        <li><%= current_user.postal_code %>, <%= current_user.province %></li>
+      </ul>
   </div>
 </div>
 

@@ -4,17 +4,27 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h3>Hey Raj!</h3>
+    <h2>Hey Raj! You have a new order waiting!</h2>
     <br>
-    <p>You have a new order from Grassy!</p>
-    <p>Ordered items:<br>
-		<%= render @order.line_items %>
-	  </p>
-    <p>Address for delivery:<br>
-      <%= @order.address %>
-    </p>
-    <p>This is name of the user:<br>
-      <%= @order.user.name %>
-    </p>
+    <h4>Ordered items:</h4>
+		<p><%= render @order.line_items %></p>
+    <hr>
+    <h4>Address for delivery:</h4>
+      <p>
+        <ul>
+          <li>Street Address: <%= @order.user.street_address %></li>
+          <li>Unit Number: <%= @order.user.unit_number %></li>
+          <li>Buzzer Number: <%= @order.user.buzzer_number %></li>
+          <li>City: <%= @order.user.city %></li>
+          <li>Postal Code: <%= @order.user.postal_code %></li>
+        </ul>
+      </p>
+      <h4>Customers Personal Info:</h4>
+      <p>
+        <ul>
+          <li>Name: <%= @order.user.name %></li>
+          <li>Phone: <%= @order.user.telephone %></li>
+        </ul>
+      </p>
   </body>
 </html>

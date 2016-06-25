@@ -8,7 +8,12 @@ class OrdersController < ApplicationController
   # GET /orders.json
   def index
     #@orders = Order.all
-    @orders = current_user.orders
+    if current_user.admin?
+      @orders = Order.all.order("created_at DESC")
+    else
+      @orders = current_user.orders
+    end
+    #@categories = Category.all
   end
 
   # GET /orders/1

@@ -71,7 +71,7 @@
 								        		<br>
 								        		<h4>Sign In Count:</h4><p><%= user.sign_in_count %></p>
 								        		<br>
-								        		<h4>Last Signed In:</h4><p><%= user.last_sign_in_at %></p>
+								        		<h4>Last Signed In:</h4><p><%= user.last_sign_in_at.try(:strftime, '%A, %b %d') %></p>
 								        	</div><!-- end col-md-6 -->
 								        </div><!-- end row -->
 								      </div>
