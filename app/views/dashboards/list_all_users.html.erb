@@ -63,11 +63,11 @@
 								        		<% end %>
 								        	</div><!-- end col-md-6 -->
 								        	<div class="col-md-6">
-								        		<h4>Date of Birth:</h4> <p><%= user.date_of_birth %></p>
+								        		<h4>Date of Birth:</h4> <p><%= user.date_of_birth.try(:strftime, '%B %d, %Y') %></p>
 								        		<br>
-								        		<h4>Purchase Counter:</h4><p>7</p>
+								        		<h4>Purchase Counter:</h4><p><%= user.orders.count %></p>
 								        		<br>
-								        		<h4>Total $ Spent:</h4><p>$1,350.00</p>
+								        		<h4>Total $ Spent:</h4><p></p>
 								        		<br>
 								        		<h4>Sign In Count:</h4><p><%= user.sign_in_count %></p>
 								        		<br>

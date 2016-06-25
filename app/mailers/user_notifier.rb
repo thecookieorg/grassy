@@ -21,6 +21,18 @@ class UserNotifier < ApplicationMailer
 		
 	end
 
+	# send an email when a purchase has been made
+	def send_order_confirmation_to_grassy_owner(order)
+		#@user = user
+		grassy_owner = 'mmanojlovic@cesgroup.ca'
+		@order = order
+		mail(
+			:to => grassy_owner,
+			:subject => 'Order on Grassy'
+		)  
+		
+	end
+
 	#def send_purcase_email(user)
 	#	@user = user
 	#	mail( :to => @user.email,

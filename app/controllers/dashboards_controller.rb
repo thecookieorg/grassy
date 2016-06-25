@@ -1,3 +1,5 @@
+require 'date'
+
 class DashboardsController < ApplicationController
   before_action :authenticate_user!
   load_and_authorize_resource
@@ -12,6 +14,7 @@ class DashboardsController < ApplicationController
 
   def list_all_users
   	@users = User.all
+    @orders = Order.all
   end
 
   def store_settings

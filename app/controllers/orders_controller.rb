@@ -60,6 +60,7 @@ class OrdersController < ApplicationController
         Cart.destroy(session[:cart_id])
         session[:cart_id] = nil
         UserNotifier.send_order_confirmation(@order).deliver # sends order confirmation email to user
+        UserNotifier.send_order_confirmation_to_grassy_owner(@order).deliver # sends order confirmation email to user
         format.html { redirect_to root_url, notice: 'Thank you for your order.' }
         format.json { render :show, status: :created, location: @order }
       else

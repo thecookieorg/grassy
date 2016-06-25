@@ -10,7 +10,7 @@ ActionMailer::Base.smtp_settings = {
 	domain: "domain.of.sender.net",
 	authentication: "plain",
 	user_name: "marko.manojlovic.bg@gmail.com",
-	password: "",
+	password: ENV["gmail_password"],
 	enable_starttls_auto: true
   #:user_name => 'your_sendgrid_username',
   #:password => 'your_sendgrid_password',

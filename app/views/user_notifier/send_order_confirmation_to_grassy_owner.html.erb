@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h3>Hey Raj!</h3>
+    <br>
+    <p>You have a new order from Grassy!</p>
+    <p>Ordered items:<br>
+		<%= render @order.line_items %>
+	  </p>
+    <p>Address for delivery:<br>
+      <%= @order.address %>
+    </p>
+    <p>This is name of the user:<br>
+      <%= @order.user.name %>
+    </p>
+  </body>
+</html>
