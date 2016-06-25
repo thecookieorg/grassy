@@ -10,7 +10,7 @@
 				<h1>Check out our products!</h1>
 			</div>
 		</div><!-- end row -->
-		<div class="row" style="margin-top: 10px;">
+		<div class="row" style="margin-top: 10px; margin-bottom: 170px;">
 			<div class="col-md-9">
 				
 					<% @products.each_slice(4) do |products| %>
@@ -27,17 +27,17 @@
 							    		<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#<%= product.id %>">
 										  <i class="fa fa-asterisk" aria-hidden="true"></i> Info
 										</button>
-							    	</div>
+							    	</div><!-- end col-md-6 -->
 							    	<div class="col-md-6">
 							    		<%= button_to line_items_path(product_id: product), class: "btn btn-success btn-sm", remote: true do %>
 									    	<i class="fa fa-cart-plus" aria-hidden="true"></i> Buy
 									    <% end %>
-							    	</div>
-							    </div>
+							    	</div><!-- end col-md-6 -->
+							    </div><!-- end row -->
 							    
 							    
-							  </div>
-							</div>
+							  </div><!-- end panel-body text-center -->
+							</div><!-- end panel panel-default -->
 						</div><!-- end col-md-3 -->
 
 						<!-- modal begins -->

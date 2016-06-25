@@ -1,3 +1,6 @@
+require 'httparty'
+require 'json'
+
 class OrdersController < ApplicationController
   include CurrentCart
   before_action :authenticate_user!
@@ -58,6 +61,52 @@ class OrdersController < ApplicationController
       description: 'Grassy Payment',
       currency: 'cad'
     )
+
+    # GET SWIFT INTEGRATION
+    products = @order.add_line_items_from_cart(@cart)
+    api_key = ENV["swift_api_key"]
+    
+    item_elements = []
+
+    items = products.each { |i| item_elements.push(i) }
+    puts items
+=begin
+    HTTParty.post("https://app.getswift.co/api/v2/deliveries",
+          {
+            :body => {
+                        "apiKey": api_key,
+                        "booking":{
+                            "items": items,
+                            "pickupDetail": {
+                                "name": "Marko",
+                                "phone": "604 356 8259",
+                                "address": "3456 Wellington Crescent",
+                                "additionalAddressDetails": {
+                                  "stateProvince": "British Columbia",
+                                  "country": "Canada",
+                                  "postcode": "V7R3B4",
+                                  "latitude": 49.3405554,
+                                  "longitude": -123.1045127
+                                }
+                            },
+                            "dropoffDetail": {
+                                "name": current_user.name,
+                                "phone": current_user.telephone,
+                                "address": current_user.street_address,
+                                "additionalAddressDetails": {
+                                  "stateProvince": current_user.province,
+                                  "country": "Canada",
+                                  "postcode": current_user.postal_code,
+                                  "latitude": current_user.latitude,
+                                  "longitude": current_user.longitude
+                                }
+                            }
+                        }
+                    }.to_json,
+            :headers => { 'Content-Type' => 'application/json' }
+          }
+      )
+=end
 
     respond_to do |format|
       if @order.save
