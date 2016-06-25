@@ -6,7 +6,10 @@
   <body>
     <h2>Hey Raj! You have a new order waiting!</h2>
     <h4>Ordered items:</h4>
-		<p><%= render @order.line_items %></p>
+		<table>
+      <tr><th colspan="2">Qty</th><th>Description</th></tr>
+      <%= render @order.line_items -%>
+    </table>
     <hr>
     <h4>Address for delivery:</h4>
       <p>

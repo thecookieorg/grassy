@@ -1,4 +1,5 @@
 require 'httparty'
+require 'active_support/all'
 require 'json'
 
 class OrdersController < ApplicationController
@@ -31,8 +32,55 @@ class OrdersController < ApplicationController
       return
     end
 
-    #@order = Order.new
     @order = current_user.orders.build
+
+
+=begin
+
+THIS IS MY ITEMS ARRAY OF OBJECTS FROM GET SWIFT DOCUMENTATION
+    "items": [
+      {
+        "quantity": 1,
+        "sku": "sample string 2",
+        "description": "sample string 3",
+        "price": 4.0
+      },
+      {
+        "quantity": 1,
+        "sku": "sample string 2",
+        "description": "sample string 3",
+        "price": 4.0
+      }
+    ]
+=end
+
+    @@items ||= []
+
+    @cart.line_items.each do |line_item|
+      item_hash = {
+          :quantity => line_item.quantity,
+          :sku => line_item.product.sku,
+          :description => "#{line_item.product.name}",
+          :price => line_item.product.price * line_item.quantity
+      }
+
+      @@items.push(item_hash)
+
+      # THIS BELOW DOESN'T WORK BECAUSE IT IS CREATING
+      # A NEW HAS EACH TIME I PUSH IT TO THE ARRAY
+      # SO MY END RESULT IN THIS TRY WAS LIKE THIS:
+      # [{quantity: 3}, {sku: SKU_NAME}, {description: Description}]
+      #quantity = { :quantity => line_item.quantity }
+      #sku = { :sku => line_item.product.sku }
+      #description = { :description => "#{line_item.product.name}" }
+      #price = { :price => line_item.product.price }
+      
+      # Push hashes into array
+      #@@items << quantity
+      #@@items << sku
+      #@@items << description
+      #@@items << price
+    end
 
     @categories = Category.all
   end
@@ -63,58 +111,39 @@ class OrdersController < ApplicationController
     )
 
     # GET SWIFT INTEGRATION
-    products = @order.add_line_items_from_cart(@cart)
     api_key = ENV["swift_api_key"]
     
-    item_elements = []
-
-    items = products.each { |i| item_elements.push(i) }
-    puts items
-=begin
+    dropoffAddress = "#{current_user.street_address}, #{current_user.city}, #{current_user.postal_code}, #{current_user.province}"
     HTTParty.post("https://app.getswift.co/api/v2/deliveries",
           {
-            :body => {
-                        "apiKey": api_key,
-                        "booking":{
-                            "items": items,
-                            "pickupDetail": {
-                                "name": "Marko",
-                                "phone": "604 356 8259",
-                                "address": "3456 Wellington Crescent",
-                                "additionalAddressDetails": {
-                                  "stateProvince": "British Columbia",
-                                  "country": "Canada",
-                                  "postcode": "V7R3B4",
-                                  "latitude": 49.3405554,
-                                  "longitude": -123.1045127
-                                }
-                            },
-                            "dropoffDetail": {
-                                "name": current_user.name,
-                                "phone": current_user.telephone,
-                                "address": current_user.street_address,
-                                "additionalAddressDetails": {
-                                  "stateProvince": current_user.province,
-                                  "country": "Canada",
-                                  "postcode": current_user.postal_code,
-                                  "latitude": current_user.latitude,
-                                  "longitude": current_user.longitude
-                                }
-                            }
+              :body => {
+                    "apiKey": api_key,
+                    "booking":{
+                        "items": @@items,
+                        "pickupDetail": {
+                            "name": "Marko",
+                            "phone": "604 356 8259",
+                            "address": "3456 Wellington Crescent, North Vancouver, V7R3B4, British Columbia"
+                        },
+                        "dropoffDetail": {
+                            "name": current_user.name,
+                            "phone": current_user.telephone,
+                            "address": dropoffAddress
                         }
-                    }.to_json,
-            :headers => { 'Content-Type' => 'application/json' }
+                    }
+                }.to_json,  
+              :headers => { 'Content-Type' => 'application/json' }
           }
       )
-=end
+
 
     respond_to do |format|
       if @order.save
 
         Cart.destroy(session[:cart_id])
         session[:cart_id] = nil
-        UserNotifier.send_order_confirmation(@order).deliver # sends order confirmation email to user
-        UserNotifier.send_order_confirmation_to_grassy_owner(@order).deliver # sends order confirmation email to user
+        #UserNotifier.send_order_confirmation(@order).deliver # sends order confirmation email to user
+        #UserNotifier.send_order_confirmation_to_grassy_owner(@order).deliver # sends order confirmation email to user
         format.html { redirect_to root_url, notice: 'Thank you for your order.' }
         format.json { render :show, status: :created, location: @order }
       else
@@ -160,7 +189,7 @@ class OrdersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def order_params
-      params.require(:order).permit(:pay_type, :address, :stripeEmail, :stripeToken, :stripe_card_token)
+      params.require(:order).permit(:pay_type, :address, :stripeEmail, :stripeToken, :stripe_card_token, :product_id)
     end
 
 end
