@@ -9,7 +9,7 @@ class OrdersController < ApplicationController
   def index
     #@orders = Order.all
     if current_user.admin?
-      @orders = Order.all.order("created_at DESC")
+      @orders = Order.all.order("created_at DESC").paginate(:page => params[:page], :per_page => 20)
     else
       @orders = current_user.orders
     end

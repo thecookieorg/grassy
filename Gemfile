@@ -34,6 +34,7 @@ gem 'stripe', git: 'https://github.com/stripe/stripe-ruby'
 gem 'figaro'
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'will_paginate', '~> 3.1.0'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
