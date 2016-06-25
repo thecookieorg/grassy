@@ -8,6 +8,7 @@ class DashboardsController < ApplicationController
   	#authorize! :index 
   	@users = User.all
   	@products = Product.all
+    @orders = Order.all
   end
 
   def list_all_users

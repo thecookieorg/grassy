@@ -7,8 +7,12 @@
                 <div class="row">
                     <div class="col-lg-12">
                       <a href="#menu-toggle" class="btn btn-info btn-xs" id="menu-toggle">Toggle Menu</a>
-                        <h1>Manage Categories</h1>
-                        <%= link_to 'Add New Category', new_category_path, class: "btn btn-success" %>
+                        <h1>Manage Categories
+                          <%= link_to new_category_path, class: "btn btn-success btn-xs" do %>
+                            <i class="fa fa-plus" aria-hidden="true"></i> Add New Category
+                          <% end %>
+                        </h1>
+                        <hr>
                         <table class="table table-striped table-hover ">
                           <thead>
                             <tr>
