@@ -1,96 +1,114 @@
-
 <div class="container">
-	<div class="row">
-		<div class="col-md-12">
-			<%= image_tag "product-img-big.jpg", class: "img-responsive" %>
-		</div><!-- end col-md-12 -->
-	</div><!-- end row -->
-	<div class="row" style="margin-top: 10px;">
-		<div class="col-md-12">
-			<h1>Check out our products!</h1>
-		</div>
-	</div><!-- end row -->
-	<div class="row" style="margin-top: 10px;">
-		<div class="col-md-9">
-			<div class="row">
-				<% @products.each do |product| %>
-					<div class="col-md-3">
-						<div class="panel panel-default">
-						  <div class="panel-body text-center">
-						    <%= image_tag product.attachment.large, class: "img-responsive" %>
-						    <h4><%= product.name %></h4>
-						    <p>$<%= product.price %></p>
-						    <div class="row">
-						    	<div class="col-md-6">
-						    		<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#<%= product.id %>">
-									  <i class="fa fa-asterisk" aria-hidden="true"></i> Info
-									</button>
-						    	</div>
-						    	<div class="col-md-6">
-						    		<%= button_to line_items_path(product_id: product), class: "btn btn-success btn-sm", remote: true do %>
-								    	<i class="fa fa-cart-plus" aria-hidden="true"></i> Buy
-								    <% end %>
-						    	</div>
-						    </div>
-						    
-						    
-						  </div>
-						</div>
-					</div><!-- end col-md-3 -->
-
-					<!-- modal begins -->
-						<!-- Modal -->
-							<div class="modal fade" id="<%= product.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-							  <div class="modal-dialog" role="document">
-							    <div class="modal-content">
-							      <div class="modal-header">
-							        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-							        <h4 class="modal-title" id="myModalLabel"><%= product.name %> Details</h4>
-							      </div>
-							      <div class="modal-body">
-							        <div class="row">
-							        	<div class="col-md-6">
-							        		<%= image_tag product.attachment.large, class: "img-responsive" %>
-							        		<br>
-							        		<h5>Share Product</h5>
-									      <i class="fa fa-facebook-official" aria-hidden="true"></i> <i class="fa fa-twitter-square" aria-hidden="true"></i>
-							        	</div>
-							        	<div class="col-md-6">
-							        	  <h3><em>$<%= product.price %></em></h3>
-									      <h4><span style="color: green;">IN STOCK</span></h4>
-									      <% if product.weight == 1 %>
-									        <h3><strong>SIZE:</strong> <%= product.weight %> gram</h3>
-									      <% else %>
-									        <h3><strong>SIZE:</strong> <%= product.weight %> grams</h3>
-									      <% end %>
-									      <h5>SKU: <%= product.sku %></h5>
-									      <br>
-									      <h3 style="border-bottom: 1px solid #eee;">Description</h3>
-									      <p><%= product.description %></p>
-							        	</div>
-							        </div><!-- end row -->
-							      </div>
-							      <div class="modal-footer">
-							        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-							      </div>
+	<% if current_user.street_address.present? %>
+		<div class="row">
+			<div class="col-md-12">
+				<%= image_tag "product-img-big.jpg", class: "img-responsive" %>
+			</div><!-- end col-md-12 -->
+		</div><!-- end row -->
+		<div class="row" style="margin-top: 10px;">
+			<div class="col-md-12">
+				<h1>Check out our products!</h1>
+			</div>
+		</div><!-- end row -->
+		<div class="row" style="margin-top: 10px;">
+			<div class="col-md-9">
+				
+					<% @products.each_slice(4) do |products| %>
+						<div class="row">
+						<% products.each do |product| %>
+						<div class="col-md-3">
+							<div class="panel panel-default">
+							  <div class="panel-body text-center">
+							    <%= image_tag product.attachment.large, class: "img-responsive" %>
+							    <h4><%= product.name %></h4>
+							    <p>$<%= product.price %></p>
+							    <div class="row">
+							    	<div class="col-md-6">
+							    		<button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#<%= product.id %>">
+										  <i class="fa fa-asterisk" aria-hidden="true"></i> Info
+										</button>
+							    	</div>
+							    	<div class="col-md-6">
+							    		<%= button_to line_items_path(product_id: product), class: "btn btn-success btn-sm", remote: true do %>
+									    	<i class="fa fa-cart-plus" aria-hidden="true"></i> Buy
+									    <% end %>
+							    	</div>
 							    </div>
+							    
+							    
 							  </div>
 							</div>
-					<!-- modal ends -->
+						</div><!-- end col-md-3 -->
 
-				<% end %>
-			</div><!-- end row -->
-		</div><!-- col-md-9 -->
-		<div class="col-md-3" style="border: 1px solid grey; padding-bottom: 12px;">
-			<div id="cart">
-				<% if (@cart.line_items.empty?) %>
-					<h5 class="text-center"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Your Cart Is Empty</h5>
-				<% else %>
-					<%= render @cart %>
-				<% end %>
-			</div>
-		</div><!-- col-md-3 -->
-	</div><!-- end row -->
+						<!-- modal begins -->
+							<!-- Modal -->
+								<div class="modal fade" id="<%= product.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+								  <div class="modal-dialog" role="document">
+								    <div class="modal-content">
+								      <div class="modal-header">
+								        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+								        <h4 class="modal-title" id="myModalLabel"><%= product.name %> Details</h4>
+								      </div>
+								      <div class="modal-body">
+								        <div class="row">
+								        	<div class="col-md-6">
+								        		<%= image_tag product.attachment.large, class: "img-responsive" %>
+								        		<br>
+								        		<h5>Share Product</h5>
+										      <i class="fa fa-facebook-official" aria-hidden="true"></i> <i class="fa fa-twitter-square" aria-hidden="true"></i>
+								        	</div>
+								        	<div class="col-md-6">
+								        	  <h3><em>$<%= product.price %></em></h3>
+										      <h4><span style="color: green;">IN STOCK</span></h4>
+										      <% if product.weight == 1 %>
+										        <h3><strong>SIZE:</strong> <%= product.weight %> gram</h3>
+										      <% else %>
+										        <h3><strong>SIZE:</strong> <%= product.weight %> grams</h3>
+										      <% end %>
+										      <h5>SKU: <%= product.sku %></h5>
+										      <br>
+										      <h3 style="border-bottom: 1px solid #eee;">Description</h3>
+										      <p><%= product.description %></p>
+								        	</div>
+								        </div><!-- end row -->
+								      </div>
+								      <div class="modal-footer">
+								        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+								      </div>
+								    </div>
+								  </div>
+								</div>
+						<!-- modal ends -->
+						<% end %>
+						</div><!-- end row -->
+					<% end %>
+				
+			</div><!-- col-md-9 -->
+			<div class="col-md-3" style="border: 1px solid grey; padding-bottom: 12px;">
+				<div id="cart">
+					<% if (@cart.line_items.empty?) %>
+						<h5 class="text-center"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Your Cart Is Empty</h5>
+					<% else %>
+						<%= render @cart %>
+					<% end %>
+				</div>
+			</div><!-- col-md-3 -->
+		</div><!-- end row -->
+	<% else %>
+		<div class="row" style="margin-top: 70px; margin-bottom: 300px;">
+			<div class="col-md-6 col-md-offset-3">
+				<div class="panel panel-warning">
+				  <div class="panel-heading">Finish Your Profile</div>
+				  <div class="panel-body">
+				    Hi, in order to proceed, please fininsh your profile by clicking on<br>
+				    <%= link_to edit_user_registration_path, class: "btn btn-warning" do %>
+				    	<i class="fa fa-user" aria-hidden="true"></i> HERE
+				    <% end %>
+				  </div>
+				</div>
+			</div><!-- end col-md-6 -->
+		</div><!-- end row -->
+	<% end %>
 </div><!-- end container -->
 
 <%= render 'pages/footer' %>
