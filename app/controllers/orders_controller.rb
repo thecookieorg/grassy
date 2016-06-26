@@ -54,6 +54,14 @@ THIS IS MY ITEMS ARRAY OF OBJECTS FROM GET SWIFT DOCUMENTATION
     ]
 =end
 
+
+
+    # REFACTOR THIS CODE!!!
+    # DON'T USE CLASS INSTANCE VARIABLES @@, USE LOCAL VARIABLES INSTEAD
+    # TRY TO MOVE THIS LOGIC BELOW INTO THE CREATE ACTION
+    # USE $items = Array.new instead of ||= [] BECAUSE WE DON'T HAVE TO APPEND ANYTHING TO EXISTING ARRAY.
+    # OUR ARRAYS ARE BEING CREATED EACH TIME AN ORDER IS MADE.
+    # $items is a global variable. Use local variable if this works under CREATE action
     @@items ||= []
 
     @cart.line_items.each do |line_item|
@@ -111,13 +119,13 @@ THIS IS MY ITEMS ARRAY OF OBJECTS FROM GET SWIFT DOCUMENTATION
     )
 
     # GET SWIFT INTEGRATION
-    api_key = ENV["swift_api_key"]
+    # api_key = ENV["swift_api_key"]
     
     dropoffAddress = "#{current_user.street_address}, #{current_user.city}, #{current_user.postal_code}, #{current_user.province}"
     HTTParty.post("https://app.getswift.co/api/v2/deliveries",
           {
               :body => {
-                    "apiKey": api_key,
+                    "apiKey": ENV["swift_api_key"],
                     "booking":{
                         "items": @@items,
                         "pickupDetail": {
