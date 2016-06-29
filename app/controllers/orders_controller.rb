@@ -62,7 +62,7 @@ THIS IS MY ITEMS ARRAY OF OBJECTS FROM GET SWIFT DOCUMENTATION
     # USE $items = Array.new instead of ||= [] BECAUSE WE DON'T HAVE TO APPEND ANYTHING TO EXISTING ARRAY.
     # OUR ARRAYS ARE BEING CREATED EACH TIME AN ORDER IS MADE.
     # $items is a global variable. Use local variable if this works under CREATE action
-    @@items ||= []
+    $items ||= []
 
     @cart.line_items.each do |line_item|
       item_hash = {
@@ -72,7 +72,7 @@ THIS IS MY ITEMS ARRAY OF OBJECTS FROM GET SWIFT DOCUMENTATION
           :price => line_item.product.price * line_item.quantity
       }
 
-      @@items.push(item_hash)
+      $items.push(item_hash)
 
       # THIS BELOW DOESN'T WORK BECAUSE IT IS CREATING
       # A NEW HAS EACH TIME I PUSH IT TO THE ARRAY
@@ -127,7 +127,7 @@ THIS IS MY ITEMS ARRAY OF OBJECTS FROM GET SWIFT DOCUMENTATION
               :body => {
                     "apiKey": ENV["swift_api_key"],
                     "booking":{
-                        "items": @@items,
+                        "items": $items,
                         "pickupDetail": {
                             "name": "Grassy",
                             "phone": "7788368819",
