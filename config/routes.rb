@@ -19,6 +19,10 @@ Rails.application.routes.draw do
     root 'landing#index', as: :authenticated_root
   end
 
+  get '/privacy_policy' => 'pages#privacy_policy'
+  get '/delivery_policy' => 'pages#delivery_policy'
+  get '/terms_of_service' => 'pages#terms_of_service'
+
   root 'pages#index'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

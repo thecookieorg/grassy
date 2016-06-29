@@ -5,6 +5,7 @@
 				<h3>REACH US AT</h3>
 				<h5><i class="fa fa-phone" aria-hidden="true"></i> +1 778 GRASSY</h5>
 				<h5><i class="fa fa-envelope-o" aria-hidden="true"></i> Email</h5>
+				
 			</div><!-- end col-md-3 -->
 			<div class="col-md-4">
 				<h3>FOLLOW US ON</h3>
@@ -13,10 +14,10 @@
 				<h5><i class="fa fa-instagram" aria-hidden="true"></i> Instagram</h5>
 			</div><!-- end col-md-3 -->
 			<div class="col-md-4">
-				<h3>CATEGORIES</h3>
-					<% @categories.each do |category| %>
-						<h5><%= category.name %></h5>
-					<% end %>
+				<h3>TERMS &amp; POLICIES</h3>
+				<h5><%= link_to "Privacy Policy", privacy_policy_path %></h5>
+				<h5><%= link_to "Delivery Policy", delivery_policy_path %></h5>
+				<h5><%= link_to "Terms of Service", terms_of_service_path %></h5>
 			</div><!-- end col-md-3 -->
 		</div><!-- end row -->
 	</div><!-- end container -->
