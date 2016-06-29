@@ -4,8 +4,8 @@
 <div class="container">
 	<div class="row">
 		<div class="col-md-12 text-center">
-			<h1>Vancouver Medical Marijuana Dispensary</h1>
-			<h3>Quality, purity, and a natural approach</h3>
+			<h1>Grassy Wellness Society</h1>
+			<h3>Free to join</h3>
 		</div><!-- end col-md-12 -->
 	</div><!-- end row -->
 
@@ -15,41 +15,36 @@
 				<a href="#" class="btn btn-info btn-lg btn-block"><i class="fa fa-heart" aria-hidden="true"></i> Learn More</a>
 			</div>
 			<div class="col-md-6 text-center">
-				<a href="#" class="btn btn-success btn-lg btn-block"><i class="fa fa-users" aria-hidden="true"></i> Join the Society</a>
+				<%= link_to new_user_registration_path, class: "btn btn-success btn-lg btn-block" do %>
+					<i class="fa fa-users" aria-hidden="true"></i> Join the Society
+				<% end %>
 			</div>
 		</div>
 	</div><!-- end row -->
 
-	<div class="row" style="margin-top: 70px;">
-		<div class="col-md-6">
-		<div class="panel panel-primary">
-		  <div class="panel-heading">
-		    <h3 class="panel-title">Admin Login</h3>
-		  </div>
-		  <div class="panel-body">
-		    <p>Username: admin@mail.com</p>
-		    <p>Password: demo1234</p>
-		  </div>
-		</div>
-	</div>
-
-	<div class="col-md-6">
-		<div class="panel panel-warning">
-		  <div class="panel-heading">
-		    <h3 class="panel-title">User Login</h3>
-		  </div>
-		  <div class="panel-body">
-		    <p>Username: user@mail.com</p>
-		    <p>Password: demo1234</p>
-		  </div>
-		</div>
-	</div>
-	</div>
-
 	<div class="row" style="margin-top: 60px;">
-		<div class="col-md-12 text-center">
-			<h4>The Med Pot Now Society was founded and registered as a non-profit society in April 2011. Our mission is to provide high-quality medical marijuana and cannabis products to legitimate patients in need. Our dispensary is located at 1316 Kingsway in Vancouver, BC Canada. If you live nearby, stop in to our Vancouver medical marijuana dispensary and speak with a representative about becoming a member today!</h4>
-		</div><!-- end col-md-12 text-center -->
+		<div class="col-md-7">
+			<h3>About Us</h3>
+			<hr>
+			<h4>It’s simple… Grassy Wellness Society wants to ensure members have access and availability to safe, affordable cannabis products for medical purposes.</h4>
+			<h4>Let’s face it, there is little or no choice for those that need medical marijuana as a way to live better lives.</h4>
+			<h4>We operate a nonprofit society to help members in need. We work with licensed MMAR growers who take pride in what they do - and it shows!</h4>
+			<h4>Our society is free to join, and we can deliver the same day, or ship for whatever it costs us.</h4>
+			<h4>Stay in touch as we add more products.</h4>
+		</div><!-- end col-md-7 -->
+		<div class="col-md-5">
+			<h3>Membership</h3>
+			<hr>
+			<h4>
+				<ul>
+					<li>It’s free to join.</li>
+					<li>Not complicated.</li>
+					<li>You must be at least 19 years old to join.</li>
+					<li>We trust you. If you know you need medical marijuana to live a better life, we will help you.</li>
+				</ul>
+			</h4>
+				
+		</div>
 	</div>
 </div><!-- end container -->
 
