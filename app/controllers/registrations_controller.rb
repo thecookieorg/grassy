@@ -33,9 +33,9 @@ class RegistrationsController < Devise::RegistrationsController
     @user.email != params[:user][:email] || params[:user][:password].present?
   end
 
-  #def account_update_params
-  #  params.require(:user).permit(:name, :email, :street_address, :unit_number, :buzzer_number, :city, :province, :postal_code, :telephone, :date_of_birth, :is_female, :password, :password_confirmation, :current_password, :latitude, :longitude)
-  #end
+  def account_update_params
+    params.require(:user).permit(:name, :email, :street_address, :unit_number, :buzzer_number, :city, :province, :postal_code, :telephone, :date_of_birth, :is_female, :password, :password_confirmation, :current_password, :latitude, :longitude)
+  end
 
 
 
