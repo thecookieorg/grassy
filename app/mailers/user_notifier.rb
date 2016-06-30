@@ -11,7 +11,7 @@ class UserNotifier < ApplicationMailer
 
 	def send_signup_email_to_grassy_owner(user)
 		@user = user
-		grassy_owner = 'hello@grassy.ca'
+		grassy_owner = 'marko.manojlovic.bg@gmail.com'
 		mail( :to => grassy_owner,
 			:subject => 'New user have registered on Grassy!'
 		)
