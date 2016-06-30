@@ -4,6 +4,7 @@ class UserNotifier < ApplicationMailer
 	# send a signup email to the user, pass in the user object that contains the user email address
 	def send_signup_email(user)
 		@user = user
+		#attachments['grassy_membership_card.pdf'] = File.read('path/to/file.pdf')
 		mail( :to => @user.email,
 			:subject => 'Thanks for signing up for Grassy'
 		)
@@ -11,7 +12,7 @@ class UserNotifier < ApplicationMailer
 
 	def send_signup_email_to_grassy_owner(user)
 		@user = user
-		grassy_owner = 'marko.manojlovic.bg@gmail.com'
+		grassy_owner = 'hello@grassy.ca'
 		mail( :to => grassy_owner,
 			:subject => 'New user have registered on Grassy!'
 		)
