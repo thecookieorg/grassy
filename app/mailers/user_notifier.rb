@@ -9,6 +9,14 @@ class UserNotifier < ApplicationMailer
 		)
 	end
 
+	def send_signup_email_to_grassy_owner(user)
+		@user = user
+		grassy_owner = 'hello@grassy.ca'
+		mail( :to => grassy_owner,
+			:subject => 'New user have registered on Grassy!'
+		)
+	end
+
 	# send an email when a purchase has been made
 	def send_order_confirmation(order)
 		#@user = user
