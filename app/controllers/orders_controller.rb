@@ -62,7 +62,7 @@ THIS IS MY ITEMS ARRAY OF OBJECTS FROM GET SWIFT DOCUMENTATION
     # USE $items = Array.new instead of ||= [] BECAUSE WE DON'T HAVE TO APPEND ANYTHING TO EXISTING ARRAY.
     # OUR ARRAYS ARE BEING CREATED EACH TIME AN ORDER IS MADE.
     # $items is a global variable. Use local variable if this works under CREATE action
-    $items ||= []
+    $items = []
 
     @cart.line_items.each do |line_item|
       item_hash = {
