@@ -5,5 +5,6 @@ class LandingController < ApplicationController
   def index
   	@categories = Category.all
   	@products = Product.order(:name)
+  	@landing_static_image = Staticimage.first
   end
 end

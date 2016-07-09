@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   resources :slideshows
+  resources :staticimages
   resources :orders
   resources :line_items
   resources :carts
