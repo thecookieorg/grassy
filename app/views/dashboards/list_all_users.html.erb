@@ -71,6 +71,8 @@
 								        		<% end %>
 								        	</div><!-- end col-md-6 -->
 								        	<div class="col-md-6">
+								        		<h4>Medical Needs:</h4><p><%= user.description_of_current_medical_need %></p>
+								        		<hr>
 								        		<h4>Date of Birth:</h4> <p><%= user.date_of_birth.try(:strftime, '%B %d, %Y') %></p>
 								        		<hr>
 								        		<h4>Purchase Counter:</h4><p><%= user.orders.count %></p>
