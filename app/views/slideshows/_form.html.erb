@@ -1,0 +1,16 @@
+<%= simple_form_for(@slideshow) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.label "Add Slideshow Image" %>
+    <%= f.file_field :slideshow, class: "form-control" %>
+    <%# f.input :image_1 %>
+    <%# f.input :image_2 %>
+    <%# f.input :image_3 %>
+    <%# f.input :image_4 %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

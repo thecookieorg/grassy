@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
 
   has_many :store_policies
   has_many :orders
+  has_many :slideshows
 
   #geocoded_by :users_address
   #after_validation :geocode          # auto-fetch coordinates

@@ -1,0 +1,57 @@
+<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+  <!-- Indicators
+  <ol class="carousel-indicators">
+    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+    <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+  </ol>
+   -->
+
+
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner" role="listbox">
+  	<% if @first_slide.present? %>
+  		<div class="item active">
+  			<%= image_tag @first_slide.slideshow.large %>
+  		</div>
+  	<% end %>
+  	<% if @second_slide.present? %>
+  		<div class="item">
+  			<%= image_tag @second_slide.slideshow.large %>
+  		</div>
+  	<% end %>
+  	<% if @third_slide.present? %>
+  		<div class="item">
+  			<%= image_tag @third_slide.slideshow.large %>
+  		</div>
+  	<% end %>
+
+  	
+		
+   
+    <!--
+    <div class="item">
+      <%# image_tag 'banner-top-3-new.jpg' %>
+      <div class="carousel-caption">
+        VANCOUVER MEDICAL MARIJUANA DISPENSARY<br>
+		Quality, purity, and a natural approach
+      </div>
+    </div>
+    <div class="item">
+      <%# image_tag 'banner-top-1-new.jpg' %>
+      <div class="carousel-caption">
+      </div>
+    </div>
+    <div class="item">
+      <%# image_tag 'banner-top-new-2.jpg' %>
+      <div class="carousel-caption">
+      </div>
+    </div>
+  </div>
+
+  Controls -->
+  
+</div>
+</div>
