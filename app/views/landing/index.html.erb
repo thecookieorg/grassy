@@ -1,5 +1,5 @@
 <% if current_user.street_address.present? %>
-		<%= image_tag @landing_static_image.staticpic.large, class: "img-responsive" %>
+		<%= image_tag @landing_static_image.staticpic.large, class: "img-responsive" if @landing_static_image.present? %>
 <div class="container">
 	
 		<div class="row" style="margin-top: 10px;">
