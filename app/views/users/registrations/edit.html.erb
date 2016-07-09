@@ -9,6 +9,7 @@
             <div class="col-md-12">
               <div class="form-group">
                 <%= f.input :name, required: true, autofocus: true, class: "form-control" %>
+                <%= f.input :description_of_current_medical_need, required: false, class: "form-control" %>
                 <%= f.input :street_address, required: true, class: "form-control" %>
                 <%= f.input :city, required: true, class: "form-control" %>
                 <%= f.input :unit_number, placeholder: "Optional", class: "form-control" %>
@@ -20,7 +21,9 @@
                 <%= f.radio_button :is_female, '0' %> <%= f.label :is_female, "Male", id: "optionsRadios1" %><br>
                 <br>
                   <%= f.label :date_of_birth %>
-                  <%= f.date_select :date_of_birth, {order: [:month, :day, :year], prompt: { day: 'Select day', month: 'Select month', year: 'Select year' }, start_year: Date.today.year - 19, end_year: Date.today.year - 80}, {required: true, class: "form-control", id: "select"} %><br>
+                  <div class="form-inline">
+                    <%= f.date_select :date_of_birth, {order: [:month, :day, :year], prompt: { day: 'Select day', month: 'Select month', year: 'Select year' }, start_year: Date.today.year - 19, end_year: Date.today.year - 80}, {required: true, class: "form-control", id: "select"} %>
+                  </div><br>
                   <%= f.input :email, required: true, class: "form-control" %>
                   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
                     <p>Currently waiting confirmation for: <%= resource.unconfirmed_email %></p>
