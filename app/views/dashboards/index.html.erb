@@ -108,15 +108,7 @@
                 <div class="row">
                 	<div class="col-md-12">
                 		<h2>Daily visits</h2>
-                		<% if Rails.env.production? %>
-                			<%= line_chart @users.group_by_day(:created_at).count %>
-                		<% else %>
-                			<%= line_chart @users.group(:created_at).count %>
-                		<% end %>
-                		<br>
-                		<hr>
-                		<h2>Geo-location visits</h2>
-                		<%= geo_chart @users.group(:city).count %>
+                		<%= stats_dashboard_index %>
                 	</div>
                 </div><!-- end row -->
             </div>
