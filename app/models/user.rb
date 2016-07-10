@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   has_many :orders
   has_many :slideshows
   has_many :staticimages
+  has_many :visits
 
   #geocoded_by :users_address
   #after_validation :geocode          # auto-fetch coordinates

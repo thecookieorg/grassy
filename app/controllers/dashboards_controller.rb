@@ -9,6 +9,7 @@ class DashboardsController < ApplicationController
   	@users = User.all
   	@products = Product.all
     @orders = Order.all
+    #@all_users_analytics = User.all
   end
 
   def list_all_users

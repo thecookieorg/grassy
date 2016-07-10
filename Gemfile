@@ -38,6 +38,10 @@ gem 'will_paginate', '~> 3.1.0'
 gem 'fog'
 gem 'httparty'
 gem 'geocoder'
+gem 'ahoy_matey'
+gem 'activeuuid', '>= 0.5.0', group: :development
+gem 'chartkick'
+#gem 'groupdate', '~> 3.0'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

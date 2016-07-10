@@ -103,7 +103,18 @@
 			            </div>
 			            <!-- /.row -->
                     </div>
-                </div>
+                </div><!-- end row -->
+
+                <div class="row">
+                	<div class="col-md-12">
+                		<% if Rails.env.production? %>
+                			<%= line_chart @users.group_by_day(:created_at).count %>
+                		<% else %>
+                			<%= line_chart @users.group(:created_at).count %>
+                		<% end %>
+                		<%= geo_chart @users.group(:city).count %>
+                	</div>
+                </div><!-- end row -->
             </div>
         </div>
         <!-- /#page-content-wrapper -->
