@@ -8,6 +8,44 @@ class ApplicationController < ActionController::Base
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
+  before_action :prepare_meta_tags, if: "request.get?"
+
+  def prepare_meta_tags(options={})
+    site_name   = "Grassy"
+    title       = [controller_name, action_name].join(" ")
+    description = "Grassy Wellness Society wants to ensure members have access and availability to safe, affordable cannabis products for medical purposes"
+    image       = options[:image] || "https://grassyvnc.s3.amazonaws.com/uploads/slideshow/slideshow/1/large_slide-1.jpg"
+    current_url = request.url
+
+    # Let's prepare a nice set of defaults
+    defaults = {
+      site:        site_name,
+      title:       title,
+      image:       image,
+      description: description,
+      keywords:    %w[grassy vancouver marijuana dispensary delivery],
+      twitter: {
+        site_name: site_name,
+        site: '@grassy',
+        card: 'summary',
+        description: description,
+        image: image
+      },
+      og: {
+        url: current_url,
+        site_name: site_name,
+        title: title,
+        image: image,
+        description: description,
+        type: 'website'
+      }
+    }
+
+    options.reverse_merge!(defaults)
+
+    set_meta_tags options
+  end
+
   protected
 
   def configure_permitted_parameters

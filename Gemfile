@@ -42,6 +42,7 @@ gem 'ahoy_matey'
 gem 'activeuuid', '>= 0.5.0', group: :development
 gem 'chartkick'
 gem 'groupdate', '~> 3.0', group: :production
+gem 'meta-tags'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

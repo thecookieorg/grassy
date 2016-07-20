@@ -8,6 +8,7 @@
     <%= f.input :weight, class: "form-control" %>
     <%= f.input :sku, class: "form-control" %>
     <%= f.input :description, class: "form-control" %>
+    <%= f.input :keywords, hint: "add comma separated keywords", class: "form-control" %>
     <div class="field">
       <%= f.label :category_id %><br>
       <%= f.collection_select :category_id, Category.all, :id, :name, class: "form-control", id: "select" %>
